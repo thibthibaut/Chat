@@ -34,7 +34,6 @@ xhr.onreadystatechange = function() {
 //xhr.send(null);
 //getMessages("minichat.php")
 $.getJSON("minichat.php", function(data){ 
-  console.log( "asds");
   $.each( data, function(index) {
     $("<p><strong>").text(data[index].pseudo).appendTo("#minichat");
     var dectryptedMessage = AESDecryptCtr(data[index].message,'clé-clé-clé-clé',256);
@@ -72,7 +71,7 @@ document.getElementById('message').value = ""; // on vide le message sur la page
 
 xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-                document.getElementById('minichat').innerHTML = xhr.responseText; // Données textuelles récupérées
+               // document.getElementById('minichat').innerHTML = xhr.responseText; // Données textuelles récupérées
         }
 };
 
