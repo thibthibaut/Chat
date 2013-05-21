@@ -38,19 +38,14 @@ $hash= sha1($hash2);
 $connection=false;
 
 for ($j=0; $j < $i; $j++) { 
-    
-    if ($_POST['id']==$user[$j]) {
 
-        if ($hash==$passwd[$j]) {
-
-            $connection=true;
-            $afficher= '\'' . 'Welcome ' . ucwords($_POST['id']) . ' !' . '\'' ;
-            $_SESSION['Connected']=true;
-            $_SESSION['pseudo']=ucwords($_POST['id']);
-            $_SESSION['password']=$hash;
-        }
+    if ($_POST['id']==$user[$j] and $hash==$passwd[$j]) {
+        $connection=true;
+        $afficher= '\'' . 'Welcome ' . ucwords($_POST['id']) . ' !' . '\'' ;
+        $_SESSION['Connected']=true;
+        $_SESSION['pseudo']=ucwords($_POST['id']);
+        $_SESSION['password']=$hash;
     }
-
 
 }
 
