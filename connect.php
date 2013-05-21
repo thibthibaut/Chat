@@ -16,7 +16,7 @@ try
 }
 catch (Exception $e)
 {
-        die('Erreur : ' . $e->getMessage());
+        die('ERROR: ' . $e->getMessage());
 }
 
 $reponse = $bdd->query('SELECT * FROM users');
