@@ -30,15 +30,13 @@ while ($donnees = $reponse->fetch()) {
 }
 
 
-
 $hash1= md5($_POST['pw']);
 $hash2 = $_POST['id'] . $hash1 ;
 $hash= sha1($hash2);
-
 $connection=false;
 
 for ($j=0; $j < $i; $j++) { 
-
+echo $hash."  ".$passwd[$j]."\n";
     if ($_POST['id']==$user[$j] and $hash==$passwd[$j]) {
         $connection=true;
         $afficher= '\'' . 'Welcome ' . ucwords($_POST['id']) . ' !' . '\'' ;
@@ -52,7 +50,6 @@ for ($j=0; $j < $i; $j++) {
 if($connection==false) {$afficher= '\'' . 'Too sad... Your Id or Password is not the good one :( <br> Try again !'  . '\''; }
 
 ?>
-
 <script type="text/javascript">
     var text = <?php echo $afficher; ?> ;
 
