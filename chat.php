@@ -9,7 +9,9 @@ if ($_SESSION['Connected']==true) { ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="style.css" />
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="minichat.js"></script>
+<script type="text/javascript" src="aes.js"></script>
 </head>
 
 <body onload="refreshChat();" onKeyPress="if (event.keyCode == 13) submitChat()">

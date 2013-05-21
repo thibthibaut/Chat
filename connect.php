@@ -36,7 +36,6 @@ $hash= sha1($hash2);
 $connection=false;
 
 for ($j=0; $j < $i; $j++) { 
-echo $hash."  ".$passwd[$j]."\n";
     if ($_POST['id']==$user[$j] and $hash==$passwd[$j]) {
         $connection=true;
         $afficher= '\'' . 'Welcome ' . ucwords($_POST['id']) . ' !' . '\'' ;

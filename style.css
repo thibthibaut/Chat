@@ -38,7 +38,17 @@ a {
 	color: #98cd00;
 
 }
+.Guillaume {
+	font-family: 'Josefin Slab', serif;
+	color: #FF0000;
 
+}
+
+
+#minichat{
+	overflow: scroll;
+	height: 500px;
+}
 
 input {
   background-color : #0f0e14;

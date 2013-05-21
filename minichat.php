@@ -4,6 +4,7 @@ mysql_connect("localhost", "root", "");
 mysql_query('set names utf8');
 mysql_select_db("securechat");
 
+
 if (isset($_POST['pseudo']) && isset($_POST['message'])) 
 {
     if (!empty($_POST['pseudo']) && !empty($_POST['message'])) 
@@ -14,8 +15,26 @@ if (isset($_POST['pseudo']) && isset($_POST['message']))
         mysql_query("INSERT INTO minichat(pseudo,message,timestamp) VALUES('$pseudo', '$message', '".time()."')");
     }
 }
-$reponse = mysql_query("SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10");
 
+
+//TODO : Convert the whole thing to PDO_MySQL and change result to an object
+//This extension is deprecated as of PHP 5.5.0, and will be removed in the future
+//NOTE: the jQuery library is already used in index.php
+$result = mysql_query("SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10");
+
+if($result){
+	$messagesArray = array();
+	while($row = mysql_fetch_array($result))  {
+		$messagesArray[] = $row;
+	}
+	header('Content-Type: application/json'); //Set mime type to JSON
+	echo json_encode($messagesArray); //Return messages into JSON
+} else {
+	echo "ERROR: ".mysql_error();
+}
+
+
+/******************************
 $i=0;
 while($val = mysql_fetch_array($reponse))
 {
@@ -25,7 +44,7 @@ while($val = mysql_fetch_array($reponse))
 	$i=$i+1;
 
 }
-
+print_r(expression)
 
 
 for ($j=0; $j < 10 ; $j++) { 
@@ -36,7 +55,7 @@ for ($j=0; $j < 10 ; $j++) {
 	echo '<p><strong>'. htmlentities(stripslashes($apseudo[$k])) . '</strong> : <span class="' . htmlentities(stripslashes($apseudo[$k])) . '" id="mess">'. htmlentities(stripslashes($amessage[$k])) .'</span></p>';
 
 }
-
+*******************************/
 
 
 
