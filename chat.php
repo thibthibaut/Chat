@@ -10,22 +10,25 @@ if ($_SESSION['Connected']==true) { ?>
 <link rel="stylesheet" href="style.css" />
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="minichat.js"></script>
-<script type="text/javascript" src="aes.js"></script>
+<script type="text/javascript" src="js/aes.js"></script>
+<script type="text/javascript" src="js/minichat.js"></script>
+<script type="text/javascript" src="js/minchat.page.js"></script>
 </head>
 
-<body onload="refreshChat();" onKeyPress="if (event.keyCode == 13) submitChat()">
+<body onload="refreshChat();">
 
 <?php $key= strtolower($_SESSION['pseudo']) . $_SESSION['password']; ?>
 
 <div class="container">
 <div id="minichat"></div>
 
-<input type="hidden" name="pseudo" id="pseudo" value=<?php echo '"' . $_SESSION['pseudo'] . '"'; ?>   />
-<input type="hidden" name="key" id="key" value=<?php echo '"' . $key . '"'; ?>   />
-<br />
-Message : <br/><input name="message" id="message" size=44><br />
+    <input type="hidden" name="pseudo" id="pseudo" value=<?php echo '"' . $_SESSION['pseudo'] . '"'; ?>   />
+    <input type="hidden" name="key" id="key" value=<?php echo '"' . $key . '"'; ?>   />
+    <br />
+    Message : <br/>
+    <input type="text" name="message" id="message" size=44 maxlength = '100'>
 
+    <br />
 <br>
 <a href="changepw.php">Changer le mot de passe</a>  &nbsp &nbsp   <a href="deconnect.php">Se deconnecter</a>
 </div>

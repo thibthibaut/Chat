@@ -9,6 +9,8 @@ if (isset($_POST['pseudo']) && isset($_POST['message']))
 {
     if (!empty($_POST['pseudo']) && !empty($_POST['message'])) 
     {
+    	//TODO: instead of getting pseudo from $_GET, recover pseudo in the session id
+
 		//$message = mysql_real_escape_string(utf8_decode($_POST['message']));
         $message = mysql_real_escape_string($_POST['message']);
         $pseudo = mysql_real_escape_string($_POST['pseudo']);
