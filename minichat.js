@@ -25,7 +25,7 @@ xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
                 document.getElementById('minichat').innerHTML = xhr.responseText; // Données textuelles récupérées
         }
-//FIXME: Cannot set property 'value' of null 
+//FIXME OR REMOVE: Cannot set property 'value' of null 
 // var encryptedmess = document.getElementById('mess');
 // encryptedmess.value = 'message decrypté';
 };
@@ -33,33 +33,18 @@ xhr.onreadystatechange = function() {
 //xhr.open("GET", "minichat.php", true);
 //xhr.send(null);
 //getMessages("minichat.php")
-$.getJSON("minichat.php", function(data){ 
-  $.each( data, function(index) {
-    $("<p><strong>").text(data[index].pseudo).appendTo("#minichat");
-    var dectryptedMessage = AESDecryptCtr(data[index].message,'clé-clé-clé-clé',256);
-    $("<span>").addClass(data[index].pseudo).text(dectryptedMessage).appendTo("#minichat");
-  })
-      //for each message in the data object, place it in #minichat
-      // for(var i=0; i < data.lenght; i++){
-      //   console.log( data[i].pseudo );
-      //   $("<p>").text(data[i].pseudo).appendTo("#minichat");
-      // }
-
-  });
-}
 
 //Must have jQuery library loaded if you want to use JSON, 
 //otherwise getXMLHttpRequest can only get Text or XML, and it's not the current trend going on today
-function getMessages(server){
-  $.getJSON(server, function(data){ 
-      //for each message in the data object, place it in #minichat
-      for(var i=0; i < data.lenght; i++){
-        console.log( data[i].pseudo );
-        $("<p>").text(data[i].pseudo).appendTo("#minichat");
-      }
-
+  $.getJSON("minichat.php", function(data){ 
+    $.each( data, function(index) {
+      $("<p><strong>").text(data[index].pseudo).appendTo("#minichat");
+      var dectryptedMessage = AESDecryptCtr(data[index].message,'clé-clé-clé-clé',256);
+      $("<span>").addClass(data[index].pseudo).text(dectryptedMessage).appendTo("#minichat");
+    })
   });
 }
+
 
 
 function submitChat()
@@ -80,4 +65,4 @@ xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.send("pseudo="+pseudo+"&message="+message);
 
 }
-var timer=setInterval("refreshChat()", 5000); // répète toutes les 0,1s
+var timer=setInterval("refreshChat()", 5000); // répète toutes les x ms
