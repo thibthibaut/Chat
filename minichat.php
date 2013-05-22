@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-mysql_connect("localhost", "root", "");
+mysql_connect("localhost", "chat_admin", "dim70#meanly");
 mysql_query('set names utf8');
 mysql_select_db("securechat");
 

@@ -12,7 +12,7 @@
 
 try
 {
-    $bdd = new PDO('mysql:host=127.0.0.1;dbname=securechat', 'root', '');
+    $bdd = new PDO('mysql:host=localhost;dbname=securechat', 'chat_admin', 'dim70#meanly');
 }
 catch (Exception $e)
 {
