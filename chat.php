@@ -15,7 +15,7 @@ if ($_SESSION['Connected']==true) { ?>
 <script type="text/javascript" src="js/minchat.page.js"></script>
 </head>
 
-<body onload="refreshChat();">
+<body onload="setInterval('chat.refresh()', 500)">
 
 <?php $key= strtolower($_SESSION['pseudo']) . $_SESSION['password']; ?>
 
