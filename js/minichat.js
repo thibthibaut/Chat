@@ -17,7 +17,7 @@ function refreshChat() {
     $.ajax({
       type: "POST",
       url: "minichat.php",
-      data: {'lastMessageId': lastMessageId}, //TODO: query only last messages
+      data: {'lastMessageId': lastMessageId}, //TODO: query only last messages without decrypting, decryption occurs later with the type function
       dataType: "json",
       success: function(data) {
         if(data){
@@ -26,9 +26,9 @@ function refreshChat() {
           var div = $("<div>").addClass('post').attr('id',data[i].id).appendTo("#minichat");
           $("<p><strong>").text(data[i].pseudo+data[i].id+":").appendTo(div);
           var dectryptedMessage = AESDecryptCtr(data[i].message,'clé-clé-clé-clé',256);         //Decode AES
-          console.log(dectryptedMessage+" "+i);
+          //console.log(dectryptedMessage+" "+i);
           dectryptedMessage = decodeURIComponent(dectryptedMessage);                            //Decode URL encoded
-          $("<p><span>").addClass(data[i].pseudo).text(dectryptedMessage).appendTo(div);
+          $("<p><span>").addClass(data[i].pseudo).addClass('type').text(dectryptedMessage).appendTo(div);
         }
         }
         //Scroll #minichat to bottom

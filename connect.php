@@ -82,6 +82,8 @@ if(isset($_GET['logout'])){
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
+    <script src="js/type.js"></script>
+
 
     <script type="text/javascript">
         var text = <?php echo $afficher; ?> ;
@@ -91,31 +93,8 @@ if(isset($_GET['logout'])){
         var cache = '';
 
 
-        function type()
-        {
-            var str = text.substr(0, currentChar);
-            var last = str.substr(str.length -1, str.length);
-            if(last != '<' && last != '>' & last != '/') {
-                $("#consoleText").html(str);
-            }
-            currentChar++;
-            if(currentChar <= text.length)
-            {
-                if(last == '<') {
-                    htmltag = true;
-                } else if(last == '>') {
-                    htmltag = false;
-                }
-                if(htmltag) {
-                    setTimeout(type, 1);
-                } else {
-                    setTimeout(type, 50);
-                }
-            }
-        }
-
         $(document).ready(function() {
-            $("#consoleText").html("");
+            $(".type").html("");
             setTimeout(type, 0010);
         });
 
@@ -131,7 +110,7 @@ if(isset($_GET['logout'])){
     ?>
 
         <div id="console">
-            <pre id="consoleText">
+            <pre id="consoleText" class="type">
             </pre>
         </div>
 
@@ -142,7 +121,7 @@ if(isset($_GET['logout'])){
     <?php } else { ?>
 
     <div id="console">
-        <pre id="consoleText">
+        <pre id="consoleText" class="type">
         </pre>
     </div>
 

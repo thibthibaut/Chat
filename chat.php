@@ -6,15 +6,18 @@ if ($_SESSION['Connected']==true) { ?>
 <!DOCTYPE html >
 <html lang="en" >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Chat - minichat</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="style.css" />
-<link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    
+    <script src="js/aes.js"></script>
+    <script src="js/minichat.js"></script>
+    <script src="js/minchat.page.js"></script>
+    <script src="js/type.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="js/aes.js"></script>
-<script type="text/javascript" src="js/minichat.js"></script>
-<script type="text/javascript" src="js/minchat.page.js"></script>
 </head>
 
 <body onload="setInterval('chat.refresh()', 1000)">
