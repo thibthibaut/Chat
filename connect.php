@@ -117,14 +117,6 @@ if(!empty($_POST['id']) and !empty($_POST['pw']) ){
 <body>
 
     <?php
-
-echo "<pre>";
-echo "Session:";
-print_r($_SESSION);
-echo "isValid:";
-print_r($isValidUser);
-echo "</pre>";
-
     if ($isValidUser){
     ?>
 
