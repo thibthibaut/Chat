@@ -1,5 +1,6 @@
 <?php
-class Database{
+class Database
+{
 	
 	private $host = DB_HOST;
 	private $user = DB_USER;
@@ -102,7 +103,7 @@ class Database{
 
 
 
-/**
+	/**
 	* Method: single
 	* ------------------
 	* Fetches the next row from a result set.
@@ -112,6 +113,61 @@ class Database{
 	public function single() {
 		$this->execute();
 		return $this->statment->fetch(PDO::FETCH_ASSOC);
+	}
+
+
+	/**
+	* Method: rowCount
+	* ------------------
+	* returns the number of rows affected by the last DELETE, INSERT, or UPDATE statement executed.
+	*
+	*@return int numbers of rows.
+	*/
+	public function rowCount(){
+		return $this->statment->rowCount();
+	}
+
+
+	/**
+	* Method: lastInsertId
+	*
+	*/
+	public function lastInsertId(){
+		//TODO
+	}
+
+	/**
+	* Method: beginTransaction
+	*
+	*/
+	public function beginTransaction() {
+		//TODO
+	}
+
+
+	/**
+	* Method: endTransaction
+	*
+	*/
+	public function endTransaction() {
+		//TODO
+	}
+
+	/**
+	* Method: cancelTransaction
+	*
+	*/
+	public function cancelTransaction() {
+		//TODO
+	}
+
+
+	/**
+	* Method: debugDumpParams
+	*
+	*/
+	public function debugDumpParams() {
+		//TODO
 	}
 
 }

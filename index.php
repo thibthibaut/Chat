@@ -3,7 +3,7 @@ $_SESSION['Connected']=false;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html lang="en">
 <head>
 <link rel="stylesheet" href="style.css" />
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
@@ -14,17 +14,12 @@ $_SESSION['Connected']=false;
 
 
 <div id="console">
-    <pre id="consoleText">
-    
-    </pre>
-
-
-
+    <pre id="consoleText"></pre>
 </div>
 
 <form action="connect.php" method="POST" >
-    Id  <input type="text" name="id" size=12> &nbsp &nbsp
-    Pass  <input type="password" name="pw" size=12> &nbsp
+    <label>Id</label><input type="text" name="id" size=12>
+    <label>Pass</label><input type="password" name="pw" size=12>
     <input type="submit" value=">>">
 </form>
 

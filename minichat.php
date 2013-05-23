@@ -1,9 +1,9 @@
 <?php
 
 //Include database class
-include 'class/database.class.php';
+require_once 'class/database.class.php';
 //Include database config file
-include 'Connections/dbconn.php';
+require_once 'Connections/dbconn.php';
 
 // Instantiate database.
 $database = new Database();
@@ -14,11 +14,9 @@ $database = new Database();
 // mysql_select_db("securechat");
 
 
-if (isset($_POST['pseudo']) && isset($_POST['message'])) 
-{
-    if (!empty($_POST['pseudo']) && !empty($_POST['message'])) 
-    {
-    	//TODO: instead of getting pseudo from $_GET, recover pseudo in the session id
+if (!empty($_POST['pseudo']) && !empty($_POST['message'])) {
+
+    	//TODO: instead of getting pseudo from $_POST, recover pseudo in the session id
 
 		//$message = mysql_real_escape_string(utf8_decode($_POST['message']));
         //$message = mysql_real_escape_string($_POST['message']);
@@ -28,8 +26,8 @@ if (isset($_POST['pseudo']) && isset($_POST['message']))
         $database->bind(':message',$_POST['message']);
         $database->execute();
         //mysql_query("INSERT INTO minichat(pseudo,message,timestamp) VALUES('$pseudo', '$message', '".time()."')");
-    }
 }
+
 
 
 //$result = mysql_query("SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10");
@@ -42,16 +40,10 @@ if($rows){
 	echo json_encode($rows); //Return messages into JSON
 }
 
-// if(isset($result) and $result>0){
-// 	$messagesArray = array();
-// 	while($row = mysql_fetch_array($result))  {
-// 		$messagesArray[] = $row;
-// 	}
-// 	header('Content-Type: application/json'); //Set mime type to JSON
-// 	echo json_encode($messagesArray); //Return messages into JSON
-// } else {
-// 	echo "ERROR: ".mysql_error();
-// }
+
+
+
+
 
 
 /******************************
