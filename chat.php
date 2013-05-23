@@ -25,14 +25,14 @@ if ($_SESSION['Connected']==true) { ?>
 <div id="minichat"></div>
 
     <input type="hidden" name="pseudo" id="pseudo" value=<?php echo '"' . $_SESSION['pseudo'] . '"'; ?>   />
-    <input type="hidden" name="key" id="key" value=<?php echo '"' . $key . '"'; ?>   />
+    <input type="hidden" name="key" id="key" value=<?php echo '"' . $key . '"'; ?>   /> 
     <br />
     Message : <br/>
     <input type="text" name="message" id="message" size=44 maxlength = '100'>
 
     <br />
 <br>
-<a href="changepw.php">Changer le mot de passe</a>  &nbsp &nbsp   <a href="deconnect.php">Se deconnecter</a>
+<a href="changepw.php">Changer le mot de passe</a>  &nbsp &nbsp   <a href="connect.php?logout">Se deconnecter</a>
 </div>
 
 

@@ -1,5 +1,7 @@
 <?php session_start(); 
 
+
+//Check acces
 if(!empty($_POST['id']) and !empty($_POST['pw']) ){
     //Include database class
     require_once 'class/database.class.php';
@@ -22,9 +24,9 @@ if(!empty($_POST['id']) and !empty($_POST['pw']) ){
 
     if ($isValidUser == 1) { 
             $_SESSION['Connected'] = true;
-            $_SESSION['pseudo'] = $_POST['id'];
+            $_SESSION['pseudo'] = ucwords($_POST['id']);
             $_SESSION['password'] = $hash;
-            $afficher= '\'' . 'Welcome ' . ucwords($_POST['id']) . ' !' . '\'' ;
+            $afficher= '\'' . 'Welcome ' . $_SESSION['pseudo'] . ' !' . '\'' ;
     
     } else {
             $_SESSION['Connected'] = false;
@@ -33,6 +35,15 @@ if(!empty($_POST['id']) and !empty($_POST['pw']) ){
 
 }
 
+//Logout
+if(isset($_GET['logout'])){ 
+    
+    //Simple exit message
+    //TODO: send message to sever of user loging out to show in chatbox
+
+    session_destroy();
+    header("Location: index.php"); //Redirect the user
+}
 
 
 
@@ -64,53 +75,52 @@ if(!empty($_POST['id']) and !empty($_POST['pw']) ){
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-<link rel="stylesheet" href="style.css" />
-<link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
-</head>
+    <meta charset="UTF-8">
+    <title>Chat - Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-
-
-
-
-<script type="text/javascript">
-    var text = <?php echo $afficher; ?> ;
-
-    var currentChar = 1;
-    var htmltag = false;
-    var cache = '';
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
 
-    function type()
-    {
-        var str = text.substr(0, currentChar);
-        var last = str.substr(str.length -1, str.length);
-        if(last != '<' && last != '>' & last != '/') {
-            $("#consoleText").html(str);
-        }
-        currentChar++;
-        if(currentChar <= text.length)
+    <script type="text/javascript">
+        var text = <?php echo $afficher; ?> ;
+
+        var currentChar = 1;
+        var htmltag = false;
+        var cache = '';
+
+
+        function type()
         {
-            if(last == '<') {
-                htmltag = true;
-            } else if(last == '>') {
-                htmltag = false;
+            var str = text.substr(0, currentChar);
+            var last = str.substr(str.length -1, str.length);
+            if(last != '<' && last != '>' & last != '/') {
+                $("#consoleText").html(str);
             }
-            if(htmltag) {
-                setTimeout(type, 1);
-            } else {
-                setTimeout(type, 50);
+            currentChar++;
+            if(currentChar <= text.length)
+            {
+                if(last == '<') {
+                    htmltag = true;
+                } else if(last == '>') {
+                    htmltag = false;
+                }
+                if(htmltag) {
+                    setTimeout(type, 1);
+                } else {
+                    setTimeout(type, 50);
+                }
             }
         }
-    }
 
-    $(document).ready(function() {
-        $("#consoleText").html("");
-        setTimeout(type, 0010);
-    });
+        $(document).ready(function() {
+            $("#consoleText").html("");
+            setTimeout(type, 0010);
+        });
 
-</script>
-
+    </script>
+</head>
 
 
 
@@ -125,7 +135,9 @@ if(!empty($_POST['id']) and !empty($_POST['pw']) ){
             </pre>
         </div>
 
-        <a href="chat.php">Access to the chat room</a><br><a href="changepw.php">Change my password</a>
+        <a href="chat.php">Access to the chat room</a><br>
+        <a href="changepw.php">Change my password</a><br>
+        <a href="connect.php?logout">I hate this and i want to go away &#33;</a>
 
     <?php } else { ?>
 
@@ -136,8 +148,8 @@ if(!empty($_POST['id']) and !empty($_POST['pw']) ){
 
     <a href="index.php">Go back home</a>
 
-    <?php } ?>
 
+    <?php } ?>
 
 
 
