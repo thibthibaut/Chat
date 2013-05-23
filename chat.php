@@ -29,6 +29,10 @@ if(isset($_SESSION['Connected']) and $_SESSION['Connected'] == true) {
     <script src="js/minchat.page.js"></script>
     <script src="js/type.js"></script>
 
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+
 </head>
 
 <body onload="setInterval('chat.refresh()', 500)">
