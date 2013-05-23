@@ -19,7 +19,7 @@ $(function() {
 
         var text = $(this).val();
         var name = $('#pseudo').val();
-        console.log(text);
+        //console.log(text);
         // send 
         chat.submit(name, text);
         $(this).val("");

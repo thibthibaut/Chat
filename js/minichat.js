@@ -31,6 +31,8 @@ function refreshChat() {
           $("<p><span>").addClass(data[i].pseudo).addClass('type').text(dectryptedMessage).appendTo(div);
         }
         }
+        //Reload MathJax
+        MathJax.Hub.Typeset();
         //Scroll #minichat to bottom
         document.getElementById('minichat').scrollTop = document.getElementById('minichat').scrollHeight;
       }

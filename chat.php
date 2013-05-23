@@ -1,6 +1,13 @@
-<?php session_start();
-
-if ($_SESSION['Connected']==true) { ?> 
+<?php 
+if (!isset($_SESSION)) {
+  session_start();
+}
+/*if(!$_SESSION['Connected'])
+{
+    exit('You must be logged to view this page');
+};*/
+if(isset($_SESSION['Connected']) and $_SESSION['Connected'] == true) {
+?> 
 
 
 <!DOCTYPE html >
@@ -12,6 +19,10 @@ if ($_SESSION['Connected']==true) { ?>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Slab|Alegreya+SC' rel='stylesheet' type='text/css'>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
     
     <script src="js/aes.js"></script>
     <script src="js/minichat.js"></script>
@@ -20,7 +31,7 @@ if ($_SESSION['Connected']==true) { ?>
 
 </head>
 
-<body onload="setInterval('chat.refresh()', 1000)">
+<body onload="setInterval('chat.refresh()', 500)">
 
 <?php $key= strtolower($_SESSION['pseudo']) . $_SESSION['password']; ?>
 
@@ -38,13 +49,8 @@ if ($_SESSION['Connected']==true) { ?>
 <a href="changepw.php">Changer le mot de passe</a>  &nbsp &nbsp   <a href="connect.php?logout">Se deconnecter</a>
 </div>
 
-
-
-
-
-
-
 </body>
+</html>
 
 
 
@@ -69,9 +75,7 @@ if ($_SESSION['Connected']==true) { ?>
 
 
 
-<?php } 
-
-else { ?>
+<?php } else { ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -123,12 +127,5 @@ else { ?>
     </pre>
 </div>
 </body>
-<?php } ?>
-
-
-
-
-
-
-
 </html>
+<?php } ?>
