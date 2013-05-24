@@ -8,7 +8,7 @@ $(function() {
        var key = event.which;
 
         //TODO: send typing status to server
-    
+        
     });
 
 
@@ -26,8 +26,3 @@ $(function() {
       }
     });
    });
-
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-</script>
