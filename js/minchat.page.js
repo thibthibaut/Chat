@@ -1,6 +1,9 @@
 //Decalre a new chat instance
 var chat =  new Chat();
 
+//Initial refresh
+chat.refresh();
+
 $(function() {
 
     // watch text input for key presses

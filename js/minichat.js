@@ -14,6 +14,10 @@ function getStateOfChat() {
 //function to ask server for new message, return them as JSON and decrypted
 function refreshChat() {
     var lastMessageId = $('.post').last().attr('id');
+    //if no previous message were found, query all.
+    if (!lastMessageId){
+      lastMessageId = 0;
+    }
     $.ajax({
       type: "POST",
       url: "minichat.php",
@@ -21,16 +25,21 @@ function refreshChat() {
       dataType: "json",
       success: function(data) {
         if(data){
-          for(var i=9; i>=0; i--) { //FIXME: This is a hack, the length of data should not be harcoded
-          //create a div container for each message  
-          var div = $("<div>").addClass('post').attr('id',data[i].id).appendTo("#minichat");
-          $("<p><strong>").text(data[i].pseudo+data[i].id+":").appendTo(div);
-          var dectryptedMessage = AESDecryptCtr(data[i].message,'clé-clé-clé-clé',256);         //Decode AES
-          //console.log(dectryptedMessage+" "+i);
-          dectryptedMessage = decodeURIComponent(dectryptedMessage);                            //Decode URL encoded
-          $("<p><span>").addClass(data[i].pseudo).addClass('type').text(dectryptedMessage).appendTo(div);
+          console.log(data);
+          $.each(data, function(i) {  
+            
+            console.log('accesssing:'+ i);
+            //create a div container for each message  
+            var div = $("<div>").addClass('post').attr('id',data[i].id).appendTo("#minichat");
+            $("<p><strong>").text(data[i].pseudo+data[i].id+":").appendTo(div);
+            var dectryptedMessage = AESDecryptCtr(data[i].message,'clé-clé-clé-clé',256);         //Decode AES
+            //console.log(dectryptedMessage+" "+i);
+            dectryptedMessage = decodeURIComponent(dectryptedMessage);                            //Decode URL encoded
+            $("<p><span>").addClass(data[i].pseudo).addClass('type').text(dectryptedMessage).appendTo(div);
+          
+          });
         }
-        }
+
         //Reload MathJax
         MathJax.Hub.Typeset();
         //Scroll #minichat to bottom

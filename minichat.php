@@ -30,17 +30,18 @@ if (!empty($_POST['pseudo']) && !empty($_POST['message'])) {
 
 
 
-//$result = mysql_query("SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10");
+if (isset($_POST['lastMessageId'])){
+	//$result = mysql_query("SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10");
+	$database->query('SELECT * FROM minichat WHERE id > :lastMessageId ORDER BY id ASC');
+	$database->bind(':lastMessageId',$_POST['lastMessageId']);
+	$rows = $database->resultSet();
 
-$database->query('SELECT * FROM minichat ORDER BY id DESC LIMIT 0,10');
-$rows = $database->resultSet();
+	if($rows){
+		header('Content-Type: application/json'); //Set mime type to JSON
+		echo json_encode($rows); //Return messages into JSON
+	}
 
-if($rows){
-	header('Content-Type: application/json'); //Set mime type to JSON
-	echo json_encode($rows); //Return messages into JSON
 }
-
-
 
 
 
