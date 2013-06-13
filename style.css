@@ -46,7 +46,8 @@ a {
 
 
 #minichat{
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden; 
 	height: 500px;
 }
 
